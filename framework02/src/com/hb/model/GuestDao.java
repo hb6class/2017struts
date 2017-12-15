@@ -17,7 +17,7 @@ public class GuestDao {
 		List<GuestVo> list = new ArrayList<GuestVo>();
 		Class.forName("oracle.jdbc.OracleDriver");
 		Connection conn = DriverManager.getConnection(
-				"jdbc:oracle:thin:@203.236.209.201:1521:xe"
+				"jdbc:oracle:thin:@203.236.209.193:1521:xe"
 				, "scott", "tiger");
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
