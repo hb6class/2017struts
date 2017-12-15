@@ -8,85 +8,81 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
+
+import com.hb.core.JdbcQuery;
+import com.hb.core.JdbcTemplate;
 import com.hb.core.JdbcUpdate;
 import com.hb.model.entity.GuestVo;
+import com.hb.util.DbConnection;
 
 public class GuestDao {
 //템플릿 메소드 패턴(Template Method Pattern)
 
 	public List<GuestVo> selectAll() throws Exception {
 		String sql="select * from guest01";
-		List<GuestVo> list = new ArrayList<GuestVo>();
-		Connection conn = null;
-		try{
-		Class.forName("oracle.jdbc.OracleDriver");
-		conn = DriverManager.getConnection(
-				"jdbc:oracle:thin:@203.236.209.193:1521:xe"
-				, "scott", "tiger");
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		while(rs.next()){
-			list.add(new GuestVo(rs.getInt("sabun")
-					,rs.getString("name")
-					,rs.getDate("nalja")
-					,rs.getInt("pay")));
-		}
-		}finally{
-			if(conn!=null)conn.close();
-		}
+		JdbcTemplate<GuestVo> jdbc = new JdbcTemplate<GuestVo>(){
+						
+			@Override
+			public GuestVo rowMapper(ResultSet rs) throws SQLException {
+				GuestVo bean = new GuestVo();
+				bean.setSabun(rs.getInt("sabun"));
+				bean.setName(rs.getString("name"));
+				bean.setNalja(rs.getDate("nalja"));
+				bean.setPay(rs.getInt("pay"));
+				return bean;
+			}
+		};
+		List<GuestVo> list =jdbc.executeQuery(sql);
 		return list;
 	}
 	
+	
+	
 	public GuestVo selectOne(int sabun) throws Exception {
-		String sql="select * from guest01 where sabun=?";
-		GuestVo bean=new GuestVo();
-		Connection conn = null;
-		try{
-		Class.forName("oracle.jdbc.OracleDriver");
-		conn = DriverManager.getConnection(
-				"jdbc:oracle:thin:@203.236.209.193:1521:xe"
-				, "scott", "tiger");
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, sabun);
-		ResultSet rs = pstmt.executeQuery();
-		while(rs.next()){
-			bean.setSabun(rs.getInt("sabun"));
-			bean.setName(rs.getString("name"));
-			bean.setNalja(rs.getDate("nalja"));
-			bean.setPay(rs.getInt("pay"));
-		}
-		}finally{
-			if(conn!=null)conn.close();
-		}
+
+		Object[] objs={sabun};
+		JdbcTemplate<GuestVo> jdbc = new JdbcTemplate<GuestVo>() {
+			
+			@Override
+			public GuestVo rowMapper(ResultSet rs) throws SQLException {
+				GuestVo bean=new GuestVo();
+				bean.setSabun(rs.getInt("sabun"));
+				bean.setName(rs.getString("name"));
+				bean.setNalja(rs.getDate("nalja"));
+				bean.setPay(rs.getInt("pay"));
+				return bean;
+			}
+		};
+		GuestVo bean = jdbc.executeOne("select * from guest01 where sabun=?",objs);
 		return bean;
 	}
 
+
+
+
 	public void addOne(GuestVo bean) throws Exception {
-		JdbcUpdate jdbc=new JdbcUpdate(){
+		JdbcTemplate<GuestVo> jdbc=new JdbcTemplate<GuestVo>(){
 
 			@Override
-			public void setPstmt(PreparedStatement pstmt) throws SQLException{
-				pstmt.setInt(1, bean.getSabun());
-				pstmt.setString(2, bean.getName());
-				pstmt.setInt(3, bean.getPay());		
+			public GuestVo rowMapper(ResultSet rs) throws SQLException {
+				return null;
 			}
-			
+		
 		};
-		jdbc.executeUpdate("insert into guest01 values (?,?,sysdate,?)");
+		jdbc.executeUpdate("insert into guest01 values (?,?,sysdate,?)", new Object[]{bean.getSabun(),bean.getName(),bean.getPay()});
 	}
 
 	public void editOne(GuestVo bean) throws Exception{
 		String sql="update guest01 set name=?,pay=? where sabun=?";
-		JdbcUpdate jdbc = new JdbcUpdate() {
-			
+		JdbcTemplate<GuestVo> jdbc = new JdbcTemplate<GuestVo>() {
+
 			@Override
-			public void setPstmt(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, bean.getName());
-				pstmt.setInt(2, bean.getPay());
-				pstmt.setInt(3, bean.getSabun());
+			public GuestVo rowMapper(ResultSet rs) throws SQLException {
+				return null;
 			}
 		};
-		jdbc.executeUpdate(sql);
+		jdbc.executeUpdate(sql, new Object[]{bean.getName(),bean.getPay(),bean.getSabun()});
 	}
 
 
