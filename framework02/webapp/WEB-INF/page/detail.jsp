@@ -12,6 +12,20 @@
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+	$(function() {
+		 
+		if('${eng }'!='Edit'){
+			$('form').submit(function() {
+				window.location.replace("edit.do?idx=${bean.sabun }");
+				return false;
+			});
+		} 
+		
+	});
+
+</script>
 </head>
 <body>
 <div class="container">
@@ -25,33 +39,39 @@
   			<ol class="breadcrumb">
 			  <li><a href="../">Home</a></li>
 			  <li><a href="./list.do">Guest</a></li>
-			  <li class="active">add</li>
+			  <li class="active">${eng }</li>
 			</ol>
 			<div class="jumbotron">
-			  <h1>Add page</h1>
-			  <p>입력페이지 입니다</p>
+			  <h1>${eng } page</h1>
+			  <p>${kor }페이지 입니다</p>
 			  <p><a class="btn btn-primary btn-lg" href="list.do" role="button">목록</a></p>
 			</div>
 			<div class="page-header">
-			  <h1>ADD page <small>입력페이지</small></h1>
+			  <h1>${eng } page <small>${kor }페이지</small></h1>
 			</div>
-			<form action="insert.do" class="form-horizontal">
+			<form action="update.do" class="form-horizontal">
 			  <div class="form-group">
 			    <label for="sabun" class="col-sm-2 control-label">sabun</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="sabun" id="sabun" placeholder="sabun">
+			      <input type="text" value="${bean.sabun }" class="form-control" name="sabun" id="sabun" placeholder="sabun" readonly="readonly">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="name" class="col-sm-2 control-label">name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="name" id="name" placeholder="name">
+			      <input type="text" value="${bean.name }" class="form-control" name="name" id="name" placeholder="name">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="nalja" class="col-sm-2 control-label">nalja</label>
+			    <div class="col-sm-10">
+			      <input type="date" value="${bean.nalja }" class="form-control" id="nalja" placeholder="nalja" disabled="disabled">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="pay" class="col-sm-2 control-label">pay</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="pay" id="pay" placeholder="pay">
+			      <input type="text" value="${bean.pay }" class="form-control" name="pay" id="pay" placeholder="pay">
 			    </div>
 			  </div>
 			  <div class="form-group">

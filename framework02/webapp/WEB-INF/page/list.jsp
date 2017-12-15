@@ -43,10 +43,10 @@
 				</tr>
 				<c:forEach items="${alist }" var="bean">
 				<tr>
-					<td><a href="#">${bean.sabun }</a></td>
-					<td><a href="#">${bean.name }</a></td>
-					<td><a href="#">${bean.nalja }</a></td>
-					<td><a href="#">${bean.pay }</a></td>
+					<td><a href="detail.do?idx=${bean.sabun }">${bean.sabun }</a></td>
+					<td><a href="detail.do?idx=${bean.sabun }">${bean.name }</a></td>
+					<td><a href="detail.do?idx=${bean.sabun }">${bean.nalja }</a></td>
+					<td><a href="detail.do?idx=${bean.sabun }">${bean.pay }</a></td>
 				</tr>
 				</c:forEach>
 				

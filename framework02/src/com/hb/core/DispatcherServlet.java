@@ -20,6 +20,8 @@ public class DispatcherServlet extends HttpServlet {
 	// /guest/add.do : com.hb.controller.AddController
 	// /guest/insert.do : com.hb.controller.InsertController
 	// /guest/detail.do : com.hb.controller.DetailController
+	// /guest/edit.do : com.hb.controller.EditController
+	// /guest/update.do : com.hb.controller.UpdateController
 	
 	// 1.정보담기 map<String,String>
 	// 2.객체생성
@@ -31,6 +33,8 @@ public class DispatcherServlet extends HttpServlet {
 		map.put("/guest/add.do", "com.hb.controller.AddController");
 		map.put("/guest/insert.do", "com.hb.controller.InsertController");
 		map.put("/guest/detail.do", "com.hb.controller.DetailController");
+		map.put("/guest/edit.do", "com.hb.controller.EditController");
+		map.put("/guest/update.do", "com.hb.controller.UpdateController");
 	}
 
 	@Override
@@ -57,6 +61,7 @@ public class DispatcherServlet extends HttpServlet {
 			}
 		}
 		String viewName = controll.execute(req);
+		System.out.println(viewName);
 		String prefix="/WEB-INF/page/";
 		String suffix=".jsp";
 		if(viewName.startsWith("redirect:")){
