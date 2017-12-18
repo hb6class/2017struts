@@ -8,10 +8,10 @@ import com.hb.core.RowMapper;
 import com.hb.model.entity.GuestVo;
 
 public class GuestDao {
-	RowMapper mapper = new RowMapper(){
+	RowMapper<GuestVo> mapper = new RowMapper<GuestVo>() {
 		
 		@Override
-		public Object mapRow(ResultSet rs) throws Exception {
+		public GuestVo mapRow(ResultSet rs) throws Exception {
 			GuestVo bean = new GuestVo();
 			bean.setSabun(rs.getInt("sabun"));
 			bean.setName(rs.getString("name"));
@@ -23,21 +23,26 @@ public class GuestDao {
 
 	public GuestVo selectOne(int sabun)throws Exception{
 		String sql="select * from guest01 where sabun=?";
-		JdbcTemplate template=new JdbcTemplate();
-		return (GuestVo) template.executeOne(sql, new Object[]{sabun}, mapper);
+		JdbcTemplate<GuestVo> template=new JdbcTemplate<GuestVo>();
+		return template.executeOne(sql, mapper, sabun);
 	}
 	
 	public List<GuestVo> selectAll() throws Exception {
 		String sql ="select * from guest01";
-		JdbcTemplate template = new JdbcTemplate();
+		JdbcTemplate<GuestVo> template = new JdbcTemplate<GuestVo>();
 		return template.executeQuery(sql, mapper);
 	}
 
 	public int insertOne(final GuestVo bean) throws Exception {
 		String sql ="insert into guest01 values (?,?,sysdate,?)";
-		JdbcTemplate template = new JdbcTemplate();
-		return template.executeUpdate(sql,new Object[]{bean.getSabun(),bean.getName(),bean.getPay()});
+		JdbcTemplate<GuestVo> template = new JdbcTemplate<GuestVo>();
+		return template.executeUpdate(sql,bean.getSabun(),bean.getName(),bean.getPay());
 	}
 	
+	public int deleteOne(int sabun) throws Exception{
+		String sql ="delete from guest01 where sabun=?";
+		JdbcTemplate<GuestVo> template = new JdbcTemplate<GuestVo>();
+		return template.executeUpdate(sql, sabun);
+	}
 
 }

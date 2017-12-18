@@ -10,17 +10,14 @@ import java.util.List;
 import com.hb.model.MyOra;
 import com.hb.model.entity.GuestVo;
 
-public class JdbcTemplate {
+public class JdbcTemplate<T> {
 	
-	public Object executeOne(String sql,Object[] objs,RowMapper mapper) throws Exception{
-		return executeQuery(sql,objs,mapper).get(0);
+	public T executeOne(String sql,RowMapper<T> mapper,Object ...objs) throws Exception{
+		return executeQuery(sql,mapper,objs).get(0);
 	}
-	public List executeQuery(String sql,RowMapper mapper) throws Exception{
-		return executeQuery(sql,new Object[]{},mapper);
-	}
-	public List executeQuery(String sql,Object[] objs,RowMapper mapper) throws Exception{
+	public List<T> executeQuery(String sql,RowMapper<T> mapper,Object ... objs) throws Exception{
 		Connection conn =null;
-		List list = new ArrayList();
+		List<T> list = new ArrayList<T>();
 		try{
 		conn = MyOra.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -37,9 +34,9 @@ public class JdbcTemplate {
 		return list;
 	}
 	
-	public int executeUpdate(String sql,Object[] objs) throws Exception{
+	public int executeUpdate(String sql,Object ... objs) throws Exception{
 		Connection conn =null;
-		List<GuestVo> list = new ArrayList<GuestVo>();
+		List<T> list = new ArrayList<T>();
 		try{
 		conn = MyOra.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);

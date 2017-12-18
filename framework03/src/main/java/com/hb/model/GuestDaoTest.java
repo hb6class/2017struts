@@ -15,6 +15,14 @@ public class GuestDaoTest {
 		}
 	}
 	
+	public static void deleteOneTest(){
+		GuestDao dao = new GuestDao();
+		try {
+			System.out.println("°á°ú:"+(dao.deleteOne(9999)>0));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public static void insertOneTest(){
 		GuestDao dao = new GuestDao();
 		GuestVo bean = new GuestVo();
@@ -43,7 +51,7 @@ public class GuestDaoTest {
 	}
 
 	public static void main(String[] args) {
-		selectOneTest();
+		deleteOneTest();
 	}
 
 }
