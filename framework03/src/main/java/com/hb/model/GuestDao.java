@@ -8,23 +8,28 @@ import com.hb.core.RowMapper;
 import com.hb.model.entity.GuestVo;
 
 public class GuestDao {
+	RowMapper mapper = new RowMapper(){
+		
+		@Override
+		public Object mapRow(ResultSet rs) throws Exception {
+			GuestVo bean = new GuestVo();
+			bean.setSabun(rs.getInt("sabun"));
+			bean.setName(rs.getString("name"));
+			bean.setNalja(rs.getDate("nalja"));
+			bean.setPay(rs.getInt("pay"));
+			return bean;
+		}
+	};
+
+	public GuestVo selectOne(int sabun)throws Exception{
+		String sql="select * from guest01 where sabun=?";
+		JdbcTemplate template=new JdbcTemplate();
+		return (GuestVo) template.executeOne(sql, new Object[]{sabun}, mapper);
+	}
 	
 	public List<GuestVo> selectAll() throws Exception {
 		String sql ="select * from guest01";
 		JdbcTemplate template = new JdbcTemplate();
-		RowMapper mapper = new RowMapper(){
-
-			@Override
-			public Object mapRow(ResultSet rs) throws Exception {
-				GuestVo bean = new GuestVo();
-				bean.setSabun(rs.getInt("sabun"));
-				bean.setName(rs.getString("name"));
-				bean.setNalja(rs.getDate("nalja"));
-				bean.setPay(rs.getInt("pay"));
-				return bean;
-			}
-			
-		};
 		return template.executeQuery(sql, mapper);
 	}
 

@@ -12,6 +12,9 @@ import com.hb.model.entity.GuestVo;
 
 public class JdbcTemplate {
 	
+	public Object executeOne(String sql,Object[] objs,RowMapper mapper) throws Exception{
+		return executeQuery(sql,objs,mapper).get(0);
+	}
 	public List executeQuery(String sql,RowMapper mapper) throws Exception{
 		return executeQuery(sql,new Object[]{},mapper);
 	}

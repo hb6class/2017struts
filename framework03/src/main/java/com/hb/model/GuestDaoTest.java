@@ -6,6 +6,15 @@ import com.hb.model.entity.GuestVo;
 
 public class GuestDaoTest {
 	
+	public static void selectOneTest(){
+		GuestDao dao = new GuestDao();
+		try {
+			System.out.println(dao.selectOne(9999));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void insertOneTest(){
 		GuestDao dao = new GuestDao();
 		GuestVo bean = new GuestVo();
@@ -34,7 +43,7 @@ public class GuestDaoTest {
 	}
 
 	public static void main(String[] args) {
-		selectAllTest();
+		selectOneTest();
 	}
 
 }
