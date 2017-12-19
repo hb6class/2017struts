@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<package name="lec01" namespace="/" extends="struts-default">
+		<action name="test01">
+			<result type="redirect">/guest/input.action</result>
+		</action>
+		<action name="test02" class="com.hb.action.Test02Action">
+			<result name="error">/test01.jsp</result>
+			<result name="success">/test02.jsp</result>
+		</action>
+		<action name="test03" class="com.hb.action.Test03Action">
+			<result type="dispatcher">/test03.jsp</result>
+		</action>
+		<action name="test04" class="com.hb.action.Test04Action">
+			<interceptor-ref name="params"/>
+			<result>/test03.jsp</result>
+		</action>
+	</package>
+	<package name="lec02" namespace="/guest" extends="lec01">
+		<action name="test01" method="action05" class="com.hb.action.Test05Action">
+			<result name="error">/test02.jsp</result>
+			<result name="success">/test01.jsp</result>
+		</action>
+		<action name="input">
+			<result name="success">/form.jsp</result>
+		</action>
+		<action name="result" class="com.hb.action.InputAction">
+			<result name="input">/form.jsp</result>
+			<result name="success">/result.jsp</result>
+		</action>
+	</package>
+	
+</struts>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
