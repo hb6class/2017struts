@@ -68,6 +68,27 @@ public class GuestDao {
 			pstmt.executeUpdate();
 		}
 	}
+
+	public GuestVo selectOne(int sabun) throws Exception {
+		String sql="select * from guest01 where sabun=?";
+		GuestVo bean = new GuestVo();
+		Class.forName(driver);
+		try(
+				Connection conn=DriverManager.getConnection(
+						url, user, password);
+				){
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, sabun);
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next()){
+				bean.setSabun(rs.getInt("sabun"));
+				bean.setName(rs.getString("name"));
+				bean.setNalja(rs.getDate("nalja"));
+				bean.setPay(rs.getInt("pay"));
+			}
+		}
+		return bean;
+	}
 }
 
 

@@ -4,6 +4,6 @@
         <wb-resource deploy-path="/" source-path="/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="struts01"/>
-        <property name="java-output-path" value="/struts01/build/classes"/>
+        <property name="java-output-path" value="/struts01/target/classes"/>
     </wb-module>
 </project-modules>

@@ -23,16 +23,16 @@
 		<c:forEach items="${list }" var="bean">
 		<tr>
 			<td>
-				<a href="#">${bean.sabun }</a>
+				<a href="detail.action?idx=${bean.sabun }">${bean.sabun }</a>
 			</td>
 			<td>
-				<a href="#">${bean.name }</a>
+				<a href="detail.action?idx=${bean.sabun }">${bean.name }</a>
 			</td>
 			<td>
-				<a href="#">${bean.nalja }</a>
+				<a href="detail.action?idx=${bean.sabun }">${bean.nalja }</a>
 			</td>
 			<td>
-				<a href="#">${bean.pay }</a>
+				<a href="detail.action?idx=${bean.sabun }">${bean.pay }</a>
 			</td>
 		</tr>
 		</c:forEach>
