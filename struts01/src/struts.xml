@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+    <struts>
+    
+    <package name="pack01" namespace="/" extends="struts-default">
+    
+    	<action name="main">
+    		<result>/index.jsp</result>
+    	</action>
+    	<action name="add">
+    		<result>/view/add.jsp</result>
+    	</action>
+    	<action name="insert" class="com.hb.action.AddAction">
+    		<result name="input">/view/add.jsp</result>
+    		<result name="success" type="redirectAction">list</result>
+    	</action>
+    	<action name="list" class="com.hb.action.ListAction">
+    		<result>/view/list.jsp</result>
+    	</action>
+    </package>
+    
+    </struts>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
