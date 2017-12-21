@@ -10,6 +10,14 @@
 	INSERT INTO GUEST02 (NAME,NALJA,PAY) VALUES (#name#,NOW(),#pay#)
 	</insert>
 	
+	<update id="editOne" parameterClass="com.hb.model.entity.GuestVo">
+	UPDATE GUEST02 SET NAME=#name#,PAY=#pay# WHERE SABUN=#sabun#
+	</update>
+	
+	<delete id="delOne" parameterClass="int">
+	DELETE FROM GUEST02 WHERE SABUN=#value#
+	</delete>
+	
 	<select id="selectOne" parameterClass="java.lang.Integer" resultClass="com.hb.model.entity.GuestVo">
 	SELECT * FROM GUEST02 WHERE SABUN=#value#
 	</select>

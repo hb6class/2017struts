@@ -40,4 +40,28 @@ public class GuestDao {
 		GuestVo bean=(GuestVo) smc.queryForObject("selectOne",sabun);
 		return bean;
 	}
+
+
+	public int editOne(GuestVo bean) throws SQLException {
+		return smc.update("editOne", bean);
+	}
+
+
+	public int delOne(int sabun) throws SQLException {
+		return smc.delete("delOne",sabun);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

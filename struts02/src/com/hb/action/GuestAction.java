@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.hb.model.GuestDao;
 import com.hb.model.entity.GuestVo;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.opensymphony.xwork2.Validateable;
@@ -14,6 +17,11 @@ import com.opensymphony.xwork2.validator.Validator;
 
 public class GuestAction implements Preparable,ModelDriven<GuestVo>{
 	// POJO СіЧт(2.x)
+//	private Map<String, Object> userSession ;
+//
+//	public void setSession(Map<String, Object> session) {
+//	   userSession = session ;
+//	}
 	private Map<String,String> errs;
 	private GuestVo bean;
 	private List<GuestVo> list;
@@ -26,6 +34,20 @@ public class GuestAction implements Preparable,ModelDriven<GuestVo>{
 	}
 	public List<GuestVo> getList() {
 		return list;
+	}
+	
+	public String delOne() throws Exception {
+		GuestDao dao= new GuestDao();
+		int result=dao.delOne(bean.getSabun());
+		if(result>0)return "success";
+		return "error";
+	}
+	public String updateOne() throws Exception {
+		if(validate())return "input";
+		GuestDao dao= new GuestDao();
+		int result=dao.editOne(bean);
+		if(result>0)return "success";
+		return "error";
 	}
 	
 	public String detail() throws SQLException{
@@ -73,6 +95,9 @@ public class GuestAction implements Preparable,ModelDriven<GuestVo>{
 	}
 	
 	public String execute() throws SQLException {
+		ActionContext ctxt = ActionContext.getContext();
+		Map<String, Object> session = ctxt.getSession();
+		
 		GuestDao dao = new GuestDao();
 		list=dao.selectAll();		
 		return "success";
