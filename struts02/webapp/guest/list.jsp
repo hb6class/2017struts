@@ -34,13 +34,15 @@
 	<div class="list-group">
 	<c:forEach items="${list }" var="bean">
 	  <a href="#" class="list-group-item">
-	  	<span class="badge"><f </span>
+	  	<span class="badge">	
+&#8361;<fmt:formatNumber value="${bean.pay }" pattern="#,###" /> </span>
 	    <h4 class="list-group-item-heading">${bean.sabun }</h4>
-	    <p class="list-group-item-text">[${bean.nalja}] ${bean.name }</p>
+	    <p class="list-group-item-text">
+	    [<fmt:formatDate value="${bean.nalja}" pattern="yy/MM/dd"/>] ${bean.name }</p>
 	  </a>
 	</c:forEach>	  
 	</div>
-	
+	<a href="add.do" role="button" class="btn btn-primary btn-lg btn-block">글쓰기</a>
 </div>
 </body>
 </html>

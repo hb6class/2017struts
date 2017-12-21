@@ -29,4 +29,9 @@ public class GuestDao {
 		List<GuestVo> list = (List<GuestVo>)smc.queryForList("selectAll");		
 		return list;
 	}
+
+
+	public void insertOne(GuestVo bean) throws SQLException {
+		smc.insert("insertOne",bean);
+	}
 }

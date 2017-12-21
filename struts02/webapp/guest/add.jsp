@@ -29,6 +29,25 @@
 </nav>
 <div class="container-fluid">
 	<h1>ADD PAGE</h1>
+	<form action="insert.do" class="form-horizontal">
+		  <div class="form-group">
+		    <label for="name" class="col-sm-2 control-label">name</label>
+		    <div class="col-sm-10">
+		      <input type="text" name="name" class="form-control" id="name" placeholder="name">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="pay" class="col-sm-2 control-label">pay</label>
+		    <div class="col-sm-10">
+		      <input type="text" name="pay" class="form-control" id="pay" placeholder="pay">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-default">입 력</button>
+		    </div>
+		  </div>
+	</form>
 </div>
 </body>
 </html>

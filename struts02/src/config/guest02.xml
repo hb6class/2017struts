@@ -11,6 +11,22 @@
 		<action name="add" method="addForm" class="com.hb.action.GuestAction">
 			<result>add.jsp</result>
 		</action>
+		<action name="insert" method="insertOne" class="com.hb.action.GuestAction">
+			<result name="input">add.jsp</result>
+			<result name="success" type="redirectAction">list</result>
+		</action>
 	</package>
 
 </struts>
+
+
+
+
+
+
+
+
+
+
+
+

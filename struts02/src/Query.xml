@@ -6,4 +6,7 @@
 	SELECT * FROM GUEST02 ORDER BY SABUN DESC
 	</select>
 
+	<insert id="insertOne" parameterClass="com.hb.model.entity.GuestVo">
+	INSERT INTO GUEST02 (NAME,NALJA,PAY) VALUES (#name#,NOW(),#pay#)
+	</insert>
 </sqlMap>
