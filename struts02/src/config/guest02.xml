@@ -15,6 +15,9 @@
 			<result name="input">add.jsp</result>
 			<result name="success" type="redirectAction">list</result>
 		</action>
+		<action name="detail" method="detail" class="com.hb.action.GuestAction">
+			<result>detail.jsp</result>
+		</action>
 	</package>
 
 </struts>

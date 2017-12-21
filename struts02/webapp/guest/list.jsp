@@ -33,7 +33,7 @@
 	<h1>LIST PAGE</h1>
 	<div class="list-group">
 	<c:forEach items="${list }" var="bean">
-	  <a href="#" class="list-group-item">
+	  <a href="detail.do?sabun=${bean.sabun }" class="list-group-item">
 	  	<span class="badge">	
 &#8361;<fmt:formatNumber value="${bean.pay }" pattern="#,###" /> </span>
 	    <h4 class="list-group-item-heading">${bean.sabun }</h4>

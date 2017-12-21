@@ -34,4 +34,10 @@ public class GuestDao {
 	public void insertOne(GuestVo bean) throws SQLException {
 		smc.insert("insertOne",bean);
 	}
+
+
+	public GuestVo selectOne(int sabun) throws SQLException {
+		GuestVo bean=(GuestVo) smc.queryForObject("selectOne",sabun);
+		return bean;
+	}
 }

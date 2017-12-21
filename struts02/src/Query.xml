@@ -9,4 +9,8 @@
 	<insert id="insertOne" parameterClass="com.hb.model.entity.GuestVo">
 	INSERT INTO GUEST02 (NAME,NALJA,PAY) VALUES (#name#,NOW(),#pay#)
 	</insert>
+	
+	<select id="selectOne" parameterClass="java.lang.Integer" resultClass="com.hb.model.entity.GuestVo">
+	SELECT * FROM GUEST02 WHERE SABUN=#value#
+	</select>
 </sqlMap>

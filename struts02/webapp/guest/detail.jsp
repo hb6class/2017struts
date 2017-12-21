@@ -29,9 +29,57 @@
 </nav>
 <div class="container-fluid">
 	<h1>DETAIL PAGE</h1>
+	<form class="form-horizontal">
+		  <div class="form-group">
+		    <label for="sabun" class="col-sm-2 control-label">sabun</label>
+		    <div class="col-sm-10">
+		      <input type="text" value="${bean.sabun }" name="sabun" class="form-control" id="sabun" placeholder="sabun" readonly="readonly">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="name" class="col-sm-2 control-label">name</label>
+		    <div class="col-sm-10">
+		      <input type="text" value="${bean.name }" name="name" class="form-control" id="name" placeholder="name" disabled="disabled">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="nalja" class="col-sm-2 control-label">nalja</label>
+		    <div class="col-sm-10">
+		      <input type="datetime" value="${bean.nalja }" name="nalja" class="form-control" id="nalja" placeholder="nalja" disabled="disabled">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="pay" class="col-sm-2 control-label">pay</label>
+		    <div class="col-sm-10">
+		      <input type="number" value="${bean.pay }" name="pay" class="form-control" id="pay" placeholder="pay" disabled="disabled">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-default">입 력</button>
+		    </div>
+		  </div>
+	</form>
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

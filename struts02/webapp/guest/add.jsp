@@ -33,13 +33,15 @@
 		  <div class="form-group">
 		    <label for="name" class="col-sm-2 control-label">name</label>
 		    <div class="col-sm-10">
-		      <input type="text" name="name" class="form-control" id="name" placeholder="name">
+		      <input type="text" value="${bean.name }" name="name" class="form-control" id="name" placeholder="name">
+		      ${errs.errName }
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="pay" class="col-sm-2 control-label">pay</label>
 		    <div class="col-sm-10">
-		      <input type="text" name="pay" class="form-control" id="pay" placeholder="pay">
+		      <input type="text" value="${bean.pay }" name="pay" class="form-control" id="pay" placeholder="pay">
+		      ${errs.errPay }
 		    </div>
 		  </div>
 		  <div class="form-group">
