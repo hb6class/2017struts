@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,7 @@
 	<div class="list-group">
 	<c:forEach items="${list }" var="bean">
 	  <a href="#" class="list-group-item">
-	  	<span class="badge">${bean.pay }</span>
+	  	<span class="badge"><f </span>
 	    <h4 class="list-group-item-heading">${bean.sabun }</h4>
 	    <p class="list-group-item-text">[${bean.nalja}] ${bean.name }</p>
 	  </a>
