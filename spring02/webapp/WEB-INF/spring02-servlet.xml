@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="guestDao" class="com.hb.model.GuestDaoImpl" scope="singleton">
+	<constructor-arg name="driver" value="com.mysql.jdbc.Driver"/>
+	<constructor-arg name="url" value="jdbc:mysql://localhost:3306/xe"/>
+	<constructor-arg name="user" value="scott"/>
+	<constructor-arg name="password" value="tiger"/>
+</bean>
+
+<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+<bean name="/list.do" class="com.hb.controller.ListController">
+	<property name="dao" ref="guestDao"></property>
+</bean>
+<bean name="/add.do" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<property name="viewName" value="add"></property>
+</bean>
+
+<bean name="/insert.do" class="com.hb.controller.AddController">
+	<property name="dao" ref="guestDao"></property>	
+</bean>
+<!-- 
+<bean name="/add.do" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"></bean> 
+-->
+
+<bean id="viewResolver"
+ class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+ <property name="prefix" value="/WEB-INF/page/"/>
+ <property name="suffix" value=".jsp"/>
+ </bean>
+
+</beans>
