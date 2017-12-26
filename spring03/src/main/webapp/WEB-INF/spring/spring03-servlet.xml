@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="handlerMapping" 
+class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	<property name="mappings">
+		<props>
+			<prop key="/index.do">idx</prop>
+			<prop key="/list.do">list</prop>
+			<prop key="/add.do">add</prop>
+			<prop key="/insert.do">insert</prop>
+			<prop key="/detail.do">detail</prop>
+			<prop key="/edit.do">edit</prop>
+			<prop key="/update.do">update</prop>
+		</props>
+	</property>
+</bean>
+
+<bean id="idx" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<property name="viewName" value="index"/>
+</bean>
+<bean id="list" class="com.hb.controller.ListController">
+	<property name="dao" ref="guestDao"/>
+</bean>
+<bean id="add" class="com.hb.controller.AddController">
+	<property name="supportedMethods" value="GET,POST"/>
+</bean>
+<bean id="insert" class="com.hb.controller.InsertController">
+	<property name="supportedMethods" value="POST"/>
+	<property name="dao" ref="guestDao"/>
+</bean>
+<bean id="detail" class="com.hb.controller.DetailController">
+	<property name="supportedMethods" value="GET"/>
+	<property name="viewName" value="detail"/>
+	<property name="dao" ref="guestDao"/>
+</bean>
+<bean id="edit" class="com.hb.controller.DetailController">
+	<property name="supportedMethods" value="GET"/>
+	<property name="viewName" value="edit"/>
+	<property name="dao" ref="guestDao"/>
+</bean>
+<bean id="update" class="com.hb.controller.UpdateController">
+	<property name="commandClass" value="com.hb.model.entity.GuestVo"/>
+	<property name="commandName" value="bean"/>	
+	<property name="dao" ref="guestDao"/>
+</bean>
+
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/views/"></property>
+	<property name="suffix" value=".jsp"></property>
+</bean>
+
+
+</beans>
